@@ -1,8 +1,8 @@
 import React from "react";
 import { AppIndicator } from "../components/UI/AppIndicator";
-import { Heading2 } from "../components/UI/Heading2";
-import { Step1Input } from "../components/UI/Step1Input";
+import { Heading } from "../components/UI/Heading";
 import { AppButton } from "../components/UI/AppButton";
+import { AppInput } from "../components/UI/AppInput";
 
 const StepOne = () => {
   return (
@@ -25,8 +25,12 @@ const StepOne = () => {
             </div>
           </div> */}
           <div className="question">
-            <Heading2 textValue="1. Занимательный вопрос" />
-            <Step1Input placeHolder="Ваш ответ" />
+            <Heading headingText="1. Занимательный вопрос" headingTag="h2" />
+            <AppInput
+              inputPlaceholder="Ваш ответ"
+              inputType="text"
+              isRequired={true}
+            />
             {/* <label className="input-wrapper">
               <input
                 required
@@ -38,7 +42,7 @@ const StepOne = () => {
                 Введите номер в правильном формате например
               </span>
             </label> */}
-            <AppButton />
+            <AppButton buttonType="submit" isDisabled={true} />
             {/* <button type="button" disabled id="next-btn">
               Далее
             </button> */}

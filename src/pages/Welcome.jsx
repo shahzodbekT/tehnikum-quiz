@@ -9,10 +9,19 @@ const Welcome = () => {
     <div className="container">
       <div className="wrapper">
         <div className="welcome">
-          <Heading textValue="Добро пожаловать в квиз от лучшего учебного центра"/>
+          <Heading Headingtype="h1" headingText="Добро пожаловать в квиз от лучшего учебного центра"/>
           <form className="welcome__form">
-            <AppInput inputLabel="Ваше имя"/>
-            <AppInput inputLabel="Ваш номер"/>
+            <AppInput inputType="text" 
+             inputLabel="Ваше имя"
+             id="username"
+             inputPlaceholder="Ваш ответ"
+             isRequired={true}
+             inputErr="Введите номер"/>
+            <AppInput inputLabel="Ваш номер" 
+             inputType="tel"
+             id="usernumber"
+             inputPlaceholder="+998 9- --- -- --"
+            />
             {/* <label className="input-wrapper" htmlFor="username">
               Ваш номер
               <input
@@ -25,7 +34,7 @@ const Welcome = () => {
               />
               <span id="error-message">Введите номер в правильном формате</span>
             </label> */}
-            <AppButton />
+            <AppButton buttonType="submit" isDisabled={true}/>
           </form>
         </div>
       </div>
