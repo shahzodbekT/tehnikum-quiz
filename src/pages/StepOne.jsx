@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppIndicator } from "../components/UI/AppIndicator";
 import { Heading } from "../components/UI/Heading";
 import { AppButton } from "../components/UI/AppButton";
 import { AppInput } from "../components/UI/AppInput";
 
 const StepOne = () => {
+  const [answerValue, setAnswerValue] = useState("");
+  const [answerErr, setAnswerErr] = useState(false);
+
+  const clickHandler = () => {
+    if (!answerValue) {
+      setAnswerErr(true);
+    } else {
+      setAnswerErr(false);
+    }
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -27,9 +38,14 @@ const StepOne = () => {
           <div className="question">
             <Heading headingText="1. Занимательный вопрос" headingTag="h2" />
             <AppInput
+              hasErr={answerErr}
+              value={answerValue}
               inputPlaceholder="Ваш ответ"
               inputType="text"
               isRequired={true}
+              id="userAnswer"
+              onChange={setAnswerValue}
+              inputErr="Введите ваш ответ"
             />
             {/* <label className="input-wrapper">
               <input
@@ -42,7 +58,7 @@ const StepOne = () => {
                 Введите номер в правильном формате например
               </span>
             </label> */}
-            <AppButton buttonType="submit" isDisabled={true} />
+            <AppButton buttonType="submit" onClick={clickHandler} isDisabled={false} />
             {/* <button type="button" disabled id="next-btn">
               Далее
             </button> */}

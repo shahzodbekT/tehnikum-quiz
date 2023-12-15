@@ -1,20 +1,19 @@
 import React from "react";
 
-export const AppInput = ({inputLabel, isRequired, inputType, id, inputPlaceholder, inputErr, value, hasErr}) => {
+export const AppInput = ({inputLabel, isRequired, inputType, id, inputPlaceholder, inputErr, value, hasErr, onChange}) => {
   return (
     <label className={`input-wrapper ${hasErr&&"_error"}`} htmlFor={id}>
       {inputLabel}
       <input
         required={isRequired}
-        type={inputType}
+        type={inputType ?? "text"}
         name={id}
         id={id}
         placeholder={inputPlaceholder}
         value={value}
+        onChange={(e) => onChange(e.target.value)}
       />
-      <span id="error-message">
-        {inputErr}
-      </span>
+      {hasErr && <span id="error-message"> {inputErr} </span>}
     </label>
   );
 };
