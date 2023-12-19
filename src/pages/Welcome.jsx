@@ -1,80 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { Heading } from "../components/UI/Heading";
-import { AppButton } from "../components/UI/AppButton";
-import { AppInput } from "../components/UI/AppInput";
+import { Heding } from "../component/ui/Heding";
+import { Button } from "../component/Button";
+import { Input } from "../component/Input";
+import { useNavigate } from "react-router-dom";
+import { LinkButton } from "../component/LinkButton";
 
 const Welcome = () => {
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
 
-  const [nameErr, setNameErr] = useState(false);
-  const [phoneErr, setPhoneErr] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+
+  const navigate = useNavigate();
 
   const clickHandler = () => {
     if (!nameValue) {
-      setNameErr(true);
+      setNameError(true);
     } else {
-      setNameErr(false);
+      setNameError(false);
     }
-
     if (!phoneValue) {
-      setPhoneErr(true);
+      setPhoneError(true);
     } else {
-      setPhoneErr(false);
+      setPhoneError(false);
     }
   };
+  useEffect(() => {
 
-  // useEffect(() => {
-
-  // },[nameValue, phoneValue])
+  }, [nameValue, phoneValue]);
 
   return (
     <div className="container">
       <div className="wrapper">
         <div className="welcome">
-          <Heading
-            Headingtype="h1"
-            headingText="Добро пожаловать в квиз от лучшего учебного центра"
-          />
+          <Heding headingText="Добро пожаловать в квиз от лучшего учебного центра" />
           <form className="welcome__form">
-            <AppInput
-              hasErr={nameErr}
+            <Input
+              hasError={nameError}
               value={nameValue}
               inputType="text"
-              inputLabel="Ваше имя"
+              inputLable="Ваше имя"
               id="username"
               inputPlaceholder="Ваш ответ"
-              isRequired={true}
-              inputErr="Введите ваше имя"
+              isRequired
+              inputError="Введите свое имя"
               onChange={setNameValue}
             />
-            <AppInput
-              hasErr={phoneErr}
-              value={phoneValue}
-              inputLabel="Ваш номер"
+            <Input
+              hasError={phoneError}
+              inputLable="Ваш номер"
               inputType="tel"
-              id="usernumber"
-              inputPlaceholder="+998 9- --- -- --"
-              inputErr="Введите свой номер"
+              id="phone"
+              inputPlaceholder="+998 9- --- -- -- "
+              inputError="Введите свой номер"
+              value={phoneValue}
               onChange={setPhoneValue}
             />
-            {/* <label className="input-wrapper" htmlFor="username">
-              Ваш номер
-              <input
-                required
-                type="tel"
-                name="phone"
-                id="phone"
-                placeholder="+998 9- --- -- -- "
-                pattern="^(?:\+998)?(?:\d{2})?(?:\d{7})$"
-              />
-              <span id="error-message">Введите номер в правильном формате</span>
-            </label> */}
-            <AppButton
-              buttonType="submit"
-              onClick={clickHandler}
-              isDisabled={false}
-            />
+
+            <LinkButton path="/step-one" onClick={clickHandler} buttonText="Далее" buttonType="submit"/>
+            {/* <Button buttonText="Далее" onClick={clickHandler} buttonType="submit" isDisabled={false} /> */}
           </form>
         </div>
       </div>

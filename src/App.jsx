@@ -1,20 +1,46 @@
 import React from "react";
-// import Welcome from "./pages/Welcome";
 import "./styles/main.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Welcome from "./pages/Welcome";
+import StepOne from "./pages/StepOne";
+import StepTwo from "./pages/StepTwo";
 import StepThree from "./pages/StepThree";
-// import { Counter } from "./pages/Counter";
-// import StepOne from "./pages/StepOne";
-// import StepTwo from "./pages/StepTwo"
+import StepFour from "./pages/StepFour";
+import Thanks from "./pages/Thanks";
 
 const App = () => {
-  return (
-    <div className="App">
-      {/* <Welcome /> */}
-      {/* <StepOne /> */}
-      {/* <StepTwo /> */}
-      <StepThree />
-    </div>
-  );
+  const routerConfig = createBrowserRouter(
+    [
+      {
+        path:"/",
+        element:<Welcome />
+      },
+      {
+        path:"/step-one",
+        element:<StepOne/>
+      },
+      {
+        path:"/step-two",
+        element:<StepTwo/>
+      },
+      {
+        path:"/step-three",
+        element:<StepThree/>
+      },
+      {
+        path:"/step-four",
+        element:<StepFour/>
+      },
+      {
+        path:"/thanks",
+        element:<Thanks/>
+      },
+    ]
+  )
+
+  return <div className="App">
+    <RouterProvider router={routerConfig}/>
+  </div>;
 };
 
-export default App
+export default App;
